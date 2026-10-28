@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ateliê Maria Pretinha | Enxovais para Bebês</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #fdfbf9; color: #4a4a4a; line-height: 1.7; }
+        h1, h2, h3, .brand-logo { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 15px 0; z-index: 1000; border-bottom: 1px solid #e8e0d8; }
+        .nav-container { max-width: 1300px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
+        .brand-logo { font-size: 26px; color: #2e3a3a; letter-spacing: 1px; }
+        .brand-logo span { font-family: 'Montserrat', sans-serif; font-size: 10px; display: block; text-transform: uppercase; letter-spacing: 4px; color: #b5976f; margin-top: -5px; }
+        .nav-links { display: flex; gap: 35px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #4a4a4a; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #b5976f; }
+
+        /* Hero Principal */
+        .hero-main { 
+            height: 100vh; min-height: 700px; 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1555252333-9f8e92e65df9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 70px; }
+        .hero-content h1 { font-size: 64px; color: #fff; text-shadow: 2px 2px 10px rgba(0,0,0,0.4); margin-bottom: 20px; font-weight: 400; letter-spacing: 2px; }
+        .hero-content p { color: #fff; font-size: 16px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; text-shadow: 1px 1px 5px rgba(0,0,0,0.4); }
+        .btn-hero { display: inline-block; padding: 16px 45px; background: #fff; color: #2e3a3a; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 600; border: 1px solid #fff; transition: all 0.3s; }
+        .btn-hero:hover { background: transparent; color: #fff; }
+
+        .intro-section { max-width: 900px; margin: 100px auto; text-align: center; padding: 0 30px; }
+        .intro-section h2 { font-size: 40px; color: #2e3a3a; margin-bottom: 25px; }
+        .intro-section p { font-size: 16px; color: #6a6a6a; font-weight: 300; line-height: 1.9; }
+        .divider { width: 60px; height: 1px; background: #b5976f; margin: 30px auto; }
+
+        /* Galeria */
+        .collection-section { max-width: 1400px; margin: 0 auto 120px; padding: 0 30px; }
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; border-bottom: 1px solid #e8e0d8; padding-bottom: 20px; }
+        .section-header h2 { font-size: 36px; color: #2e3a3a; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px 25px; }
+        .product-card { background: #fff; transition: transform 0.3s; cursor: pointer; border: 1px solid #f0ebe5; border-radius: 8px; overflow: hidden; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .product-image { width: 100%; height: 320px; background-size: cover; background-position: center; position: relative; background-color: #f9f9f9; }
+        .product-info { padding: 20px; text-align: center; }
+        .product-info h3 { font-size: 18px; color: #2e3a3a; margin-bottom: 5px; line-height: 1.3; }
+        .product-info .category { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #b5976f; margin-bottom: 8px; display: block; font-weight: 600; }
+        .product-info .price { font-size: 14px; color: #2e5e4e; font-weight: 600; }
+
+        /* Sobre */
+        .about-visual { background: #f5f0eb; padding: 100px 0; }
+        .about-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h2 { font-size: 42px; color: #2e3a3a; margin-bottom: 25px; line-height: 1.2; }
+        .about-text p { margin-bottom: 20px; font-size: 15px; color: #5a5a5a; }
+        
+        .sling-highlight { background: #fff; padding: 40px; border-radius: 12px; border-left: 5px solid #b5976f; margin-top: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .sling-highlight h3 { font-size: 24px; color: #2e3a3a; margin-bottom: 15px; }
+        .sling-highlight p { font-size: 15px; color: #666; margin-bottom: 0; }
+
+        /* Contato */
+        .contact-section { max-width: 1200px; margin: 100px auto; padding: 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-card { background: #fff; padding: 50px; border: 1px solid #e8e0d8; border-radius: 8px; }
+        .contact-card h2 { font-size: 32px; color: #2e3a3a; margin-bottom: 30px; }
+        .contact-item { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 25px; }
+        .contact-item i { color: #b5976f; font-size: 20px; margin-top: 3px; width: 25px; }
+        .contact-item div strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #9a8c7c; margin-bottom: 3px; }
+        .contact-item div a, .contact-item div span { color: #2e3a3a; text-decoration: none; font-size: 16px; font-weight: 500; }
+        .contact-item div a:hover { color: #b5976f; }
+        .phone-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+        .tag { background: #f5f0eb; padding: 8px 18px; border-radius: 40px; font-size: 13px; font-weight: 500; color: #2e3a3a; text-decoration: none; transition: all 0.2s; }
+        .tag i { margin-right: 6px; color: #b5976f; font-size: 12px; }
+        .tag:hover { background: #d4b68b; color: #fff; }
+        .tag.whatsapp:hover { background: #25D366; color: #fff; }
+
+        /* Rodapé */
+        .footer { background: #2e3a3a; color: #b9c9c7; padding: 60px 0 30px; text-align: center; }
+        .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #fff; margin-bottom: 20px; }
+        .footer p { font-size: 12px; letter-spacing: 1px; margin-bottom: 30px; }
+        .footer .badges { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
+        .footer .badges span { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+        .footer .badges i { color: #b5976f; margin-right: 8px; }
+        .footer .copyright { font-size: 11px; color: #7a8a88; border-top: 1px solid #3e4a4a; padding-top: 25px; margin-top: 20px; }
+
+        @media (max-width: 1200px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 900px) { 
+            .product-grid { grid-template-columns: repeat(2, 1fr); } 
+            .about-container, .contact-section { grid-template-columns: 1fr; gap: 40px; }
+        }
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .hero-content h1 { font-size: 40px; } 
+        }
+        @media (max-width: 550px) { 
+            .product-grid { grid-template-columns: 1fr; } 
+            .product-image { height: 350px; }
+            .contact-card { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="brand-logo">Maria Pretinha<span>Enxovais para Bebês</span></div>
+            <ul class="nav-links">
+                <li><a href="#colecao">Coleção</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-main">
+        <div class="hero-content">
+            <h1>Enxovais que<br>Abraçam</h1>
+            <p>Feito à Mão · Rio de Janeiro</p>
+            <a href="#colecao" class="btn-hero">Ver Coleção</a>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="divider"></div>
+        <h2>Carinho em Cada Detalhe</h2>
+        <p>No Ateliê Maria Pretinha, cada peça é confeccionada com cuidado para proporcionar conforto e ternura aos primeiros dias do bebê.</p>
+        <div class="divider"></div>
+    </section>
+
+    <section class="collection-section" id="colecao">
+        <div class="section-header">
+            <h2>Nossos Produtos</h2>
+            <a href="#">Ver Todos <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
+        </div>
+        <div class="product-grid">
+
+            <!-- Produto 1 -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1522771930-78848d9293e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info"><span class="category">Babadores</span><h3>Babador Arco-íris</h3><span class="price">Sob Consulta</span></div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info"><span class="category">Babadores</span><h3>Babador Balões</h3><span class="price">Sob Consulta</span></div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1503919545889-aef636e10ad4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info"><span class="category">Babadores</span><h3>Babador Floresta</h3><span class="price">Sob Consulta</span></div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info"><span class="category">Fraldas</span><h3>Fralda de Boca Arco-íris</h3><span class="price">Sob Consulta</span></div>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info"><span class="category">Fraldas</span><h3>Fralda de Boca Balões</h3><span class="price">Sob Consulta</span></div>
+            </div>
+
+            <!-- Produto 6 -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1522771930-78848d9293e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="product-info"><span class="category">Slings</span><h3>Wrap Sling Branco</h3><span class="price">Sob Consulta</span></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about-visual" id="sobre">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Sobre o<br>Ateliê</h2>
+                <p>A empresa <strong>Ateliê Maria Pretinha</strong> de CNPJ <strong>22.357.609/0001-55</strong>, fundada em <strong>02/12/2014</strong>, nasceu do desejo de criar peças únicas para a infância.</p>
+                <p>Com razão social <strong>Atelie Maria Pretinha Confeccao e Comercio de Roupas, Acessorios e Artigos Infantis LTDA</strong>, nosso ateliê está localizado no Rio de Janeiro e se dedica ao comércio varejista de artigos do vestuário e acessórios.</p>
+            </div>
+            
+            <div class="sling-highlight">
+                <h3>Wrap Sling</h3>
+                <p>Wrap Sling em malha 100% algodão com frente em tecido estampado 100% algodão.</p>
+                <p>O sling é uma das formas mais naturais de carregar seu bebê. Ter o bebê em um sling é como carregá-lo no colo, nas mesmas posições, permitindo que exista o contato direto do corpo do bebê com o da mãe.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contato">
+        <div class="contact-card">
+            <h2>Fale Conosco</h2>
+            <div class="contact-item"><i class="fas fa-envelope"></i><div><strong>E-mail</strong><a href="mailto:maria@mariapretinha.com.br">maria@mariapretinha.com.br</a></div></div>
+            <div class="contact-item"><i class="fas fa-phone-alt"></i><div><strong>Telefones</strong>
+                <div class="phone-tags">
+                    <a href="tel:+5521993923635" class="tag"><i class="fas fa-phone"></i> (21) 99392-3635</a>
+                    <a href="https://wa.me/5521993923635" target="_blank" class="tag whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="tel:+552134729400" class="tag"><i class="fas fa-phone"></i> (21) 3472-9400</a>
+                </div>
+            </div></div>
+        </div>
+        <div class="contact-card">
+            <h2>Onde Estamos</h2>
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><strong>Endereço</strong><span>Rua Pindai, 168 – Apto 102</span><br><span style="font-size: 14px; color: #6a6a6a;">Braz de Pina • Rio de Janeiro – RJ</span><br><span style="font-size: 14px; color: #6a6a6a;">CEP: 21011-230</span></div></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-logo">Ateliê Maria Pretinha</div>
+        <p>Enxovais para Bebês · Rio de Janeiro</p>
+        <div class="badges">
+            <span><i class="fas fa-check-circle"></i> Google Ads · G2 Verificado</span>
+            <span><i class="fas fa-shield-alt"></i> Empresa Verificada</span>
+        </div>
+        <div class="copyright">© 2025 Ateliê Maria Pretinha · CNPJ 22.357.609/0001-55 · Todos os direitos reservados.</div>
+    </footer>
+
+</body>
+</html>
